@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const fs = require('fs');
 
 const tours = JSON.parse(
@@ -10,7 +11,7 @@ exports.checkID = (req, res, next, val) => {
   if (req.params.id * 1 > tours.length) {
     return res.status(404).json({
       status: 'fail',
-      message: 'invalid ID'
+      message: 'invalid ID',
     });
   }
   next();
@@ -20,7 +21,7 @@ exports.checkBody = (req, res, next) => {
   if (!req.body.name || !req.body.price) {
     return res.status(400).json({
       status: 'fail',
-      message: 'Missing name or price'
+      message: 'Missing name or price',
     });
   }
   next();
@@ -34,20 +35,20 @@ exports.getAllTours = (req, res) => {
     status: 'sucess',
     results: tours.length,
     data: {
-      tours
-    }
+      tours,
+    },
   });
 };
 
 exports.getTour = (req, res) => {
   const id = req.params.id * 1; // => * 1 ( vezes 1) é um truk para transformar uma string em um number - outra forma --> parseInt(req.params.id)
-  const tour = tours.find(el => el.id === id);
+  const tour = tours.find((el) => el.id === id);
 
   res.status(200).json({
     status: 'success',
     data: {
-      tour
-    }
+      tour,
+    },
   });
 };
 
@@ -60,12 +61,12 @@ exports.createTour = (req, res) => {
   fs.writeFile(
     `${__dirname}/dev-data/data/tours-simple.json`,
     JSON.stringify(tours, null, 2),
-    err => {
+    () => {
       res.status(201).json({
         status: 'success',
         data: {
-          tour: newTour
-        }
+          tour: newTour,
+        },
       });
     }
   );
@@ -75,14 +76,14 @@ exports.updateTour = (req, res) => {
   res.status(200).json({
     status: 'sucess',
     data: {
-      tour: '<Update tour here>'
-    }
+      tour: '<Update tour here>',
+    },
   });
 };
 
 exports.deleteTour = (req, res) => {
   res.status(204).json({
     status: 'sucess',
-    data: null
+    data: null,
   });
 };
