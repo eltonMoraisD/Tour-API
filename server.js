@@ -5,6 +5,7 @@ const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
+//configurar o link do ficheiro config.env
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
