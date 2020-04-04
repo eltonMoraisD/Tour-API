@@ -1,11 +1,10 @@
-/* eslint-disable prettier/prettier */
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const app = require('./app');
 
 dotenv.config({ path: './config.env' });
+const app = require('./app');
 
-//configurar o link do ficheiro config.env
+//Configurar o link la do ficheiro config.env
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
