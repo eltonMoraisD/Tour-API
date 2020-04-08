@@ -106,6 +106,7 @@ exports.deleteTour = async (req, res) => {
   }
 };
 
+//Agregation
 exports.getTourStats = async (req, res) => {
   try {
     const stats = await Tour.aggregate([
