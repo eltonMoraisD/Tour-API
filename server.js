@@ -1,8 +1,15 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const app = require('./app');
+
+process.on('uncaughtException', (err) => {
+  console.log('uncaught Exception! Shutting down...');
+  console.log(err.name, err.message);
+
+  process.exit(1);
+});
 
 dotenv.config({ path: './config.env' });
+const app = require('./app');
 
 //Configurar o link la do ficheiro config.env
 const DB = process.env.DATABASE.replace(
@@ -25,8 +32,8 @@ const server = app.listen(port, () => {
 });
 
 process.on('unhandledRejection', (err) => {
-  console.log(err.name, err.message);
   console.log('unhandler Rejection! Shutting down...');
+  console.log(err.name, err.message);
 
   server.close(() => {
     process.exit(1);
